@@ -15,7 +15,8 @@ namespace KKKSDotNetCore.ConsoleApp
             //stringBuilder.DataSource = "."; // server name
             InitialCatalog = "KKKSDotNetCore", //Database name
             UserID = "sa", //user name
-            Password = "sa@123" //password
+            Password = "sa@123", //password
+            TrustServerCertificate = true
         };
 
     }

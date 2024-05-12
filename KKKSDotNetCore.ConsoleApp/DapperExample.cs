@@ -19,9 +19,6 @@ namespace KKKSDotNetCore.ConsoleApp
             //Create("title", "author", "content");
             Update(17,"test title2","author","content");
             Delete(13);
-
-
-
         }
 
         public void Read()
