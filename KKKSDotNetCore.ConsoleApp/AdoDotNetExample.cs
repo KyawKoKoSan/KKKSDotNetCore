@@ -19,68 +19,6 @@ namespace KKKSDotNetCore.ConsoleApp
             Password = "sa@123" //password
         };
 
-        public void Read()
-        {
-
-      
-            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            Console.WriteLine("Connection Opened");
-
-            string query = "select * from tbl_blog";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sqlDataAdapter.Fill(dt);
-
-            connection.Close();
-            Console.WriteLine("Connection Closed");
-
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                Console.WriteLine("Blog ID => " + dr["BlogId"]);
-                Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
-                Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
-                Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-                Console.WriteLine("-------------------------------------");
-            }
-
-        }
-
-        public void Edit(int id)
-        {
-            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            Console.WriteLine("Connection Opened");
-
-            string query = "select * from tbl_blog where BlogId = @BlogId";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@BlogId", id);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            sqlDataAdapter.Fill(dt);
-
-            connection.Close();
-            Console.WriteLine("Connection Closed");
-
-
-            if (dt.Rows.Count == 0)
-            {
-                Console.WriteLine("No Data Found");
-                return;
-            }
-
-            DataRow dr = dt.Rows[0];
-
-            Console.WriteLine("Blog ID => " + dr["BlogId"]);
-            Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
-            Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
-            Console.WriteLine("Blog Content => " + dr["BlogContent"]);
-            Console.WriteLine("-------------------------------------");
-
-        }
-
         public void Create(string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
@@ -109,7 +47,36 @@ namespace KKKSDotNetCore.ConsoleApp
             string message = result > 0 ? "Successfully Saved. " : "Save Process Failed";
             Console.WriteLine(message);
         }
-        
+
+        public void Read()
+        {
+
+
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection Opened");
+
+            string query = "select * from tbl_blog";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sqlDataAdapter.Fill(dt);
+
+            connection.Close();
+            Console.WriteLine("Connection Closed");
+
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Console.WriteLine("Blog ID => " + dr["BlogId"]);
+                Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
+                Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
+                Console.WriteLine("Blog Content => " + dr["BlogContent"]);
+                Console.WriteLine("-------------------------------------");
+            }
+
+        }
+
         public void Update(int id, string title, string author, string content)
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
@@ -155,6 +122,39 @@ namespace KKKSDotNetCore.ConsoleApp
 
             string message = result > 0 ? "Successfully Deleted. " : "Delete Process Failed";
             Console.WriteLine(message);
+        }
+
+        public void Edit(int id)
+        {
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection Opened");
+
+            string query = "select * from tbl_blog where BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sqlDataAdapter.Fill(dt);
+
+            connection.Close();
+            Console.WriteLine("Connection Closed");
+
+
+            if (dt.Rows.Count == 0)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+
+            DataRow dr = dt.Rows[0];
+
+            Console.WriteLine("Blog ID => " + dr["BlogId"]);
+            Console.WriteLine("Blog Title => " + dr["BlogTitle"]);
+            Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
+            Console.WriteLine("Blog Content => " + dr["BlogContent"]);
+            Console.WriteLine("-------------------------------------");
+
         }
 
     }
