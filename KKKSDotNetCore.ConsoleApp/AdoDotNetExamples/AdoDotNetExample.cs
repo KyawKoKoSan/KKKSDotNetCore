@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KKKSDotNetCore.ConsoleApp
+namespace KKKSDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
@@ -35,7 +35,7 @@ namespace KKKSDotNetCore.ConsoleApp
            ,@BlogContent)";
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
-            cmd.Parameters.AddWithValue ("@BlogAuthor", author);
+            cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
             int result = cmd.ExecuteNonQuery();
 

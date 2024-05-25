@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using KKKSDotNetCore.ConsoleApp.Dtos;
+using KKKSDotNetCore.ConsoleApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KKKSDotNetCore.ConsoleApp
+namespace KKKSDotNetCore.ConsoleApp.DapperExamples
 {
     internal class DapperExample
     {
@@ -17,7 +19,7 @@ namespace KKKSDotNetCore.ConsoleApp
             //Edit(1);
             //Edit(0);
             //Create("title", "author", "content");
-            Update(17,"test title2","author","content");
+            Update(17, "test title2", "author", "content");
             Delete(13);
         }
 
@@ -39,7 +41,7 @@ namespace KKKSDotNetCore.ConsoleApp
         {
             using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             var item = db.Query<BlogDto>("select * from tbl_blog where blogid = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
-            if(item is null)
+            if (item is null)
             {
                 Console.WriteLine("No Data Found");
                 return;

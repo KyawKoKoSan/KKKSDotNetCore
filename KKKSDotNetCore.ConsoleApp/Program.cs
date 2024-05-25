@@ -1,4 +1,4 @@
-﻿using KKKSDotNetCore.ConsoleApp;
+﻿using KKKSDotNetCore.ConsoleApp.EFCoreExamples;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -57,5 +57,6 @@ Console.WriteLine("Hello, World!");
 
 EFCoreExample eFCoreExample = new EFCoreExample();
 eFCoreExample.Run();
+
 
 Console.ReadKey();

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using KKKSDotNetCore.ConsoleApp.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KKKSDotNetCore.ConsoleApp
+namespace KKKSDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
@@ -80,7 +81,7 @@ namespace KKKSDotNetCore.ConsoleApp
             item.BlogAuthor = author;
             item.BlogContent = content;
 
-            int result = db.SaveChanges();         
+            int result = db.SaveChanges();
             string message = result > 0 ? "Successfully Updated. " : "Save Process Failed";
             Console.WriteLine(message);
         }
